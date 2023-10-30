@@ -1,11 +1,8 @@
 package ru.cryptopro.support.DssJavaClient.dto.response;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import lombok.Data;
 import lombok.Getter;
 import ru.cryptopro.support.DssJavaClient.dto.confirmation.ConfirmationChallengeDto;
 import ru.cryptopro.support.DssJavaClient.util.Utils;

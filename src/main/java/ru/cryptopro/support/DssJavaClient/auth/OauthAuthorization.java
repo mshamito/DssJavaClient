@@ -11,7 +11,6 @@ import ru.cryptopro.support.DssJavaClient.dto.common.UserCredentialDto;
 import ru.cryptopro.support.DssJavaClient.dto.request.AuthRequest;
 import ru.cryptopro.support.DssJavaClient.dto.response.AuthResponse;
 import ru.cryptopro.support.DssJavaClient.enums.GrantTypeEnum;
-import ru.cryptopro.support.DssJavaClient.exception.AuthorizationException;
 
 @Component
 @Log4j2

@@ -4,10 +4,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import ru.cryptopro.support.DssJavaClient.dto.sign.DocumentSignatureDto;
-import ru.cryptopro.support.DssJavaClient.dto.sign.SignDocsListDto;
 import ru.cryptopro.support.DssJavaClient.dto.common.UserCredentialDto;
 import ru.cryptopro.support.DssJavaClient.dto.response.SignResponse;
+import ru.cryptopro.support.DssJavaClient.dto.sign.SignDocsListDto;
 import ru.cryptopro.support.DssJavaClient.service.SignService;
 
 @CrossOrigin

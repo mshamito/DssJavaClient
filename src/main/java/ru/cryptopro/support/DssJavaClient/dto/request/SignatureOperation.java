@@ -6,10 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import ru.cryptopro.support.DssJavaClient.dto.sign.DocumentSignatureDto;
 import ru.cryptopro.support.DssJavaClient.dto.common.RefIdDto;
+import ru.cryptopro.support.DssJavaClient.dto.sign.DocumentSignatureDto;
 import ru.cryptopro.support.DssJavaClient.util.Utils;
 
 import java.util.List;

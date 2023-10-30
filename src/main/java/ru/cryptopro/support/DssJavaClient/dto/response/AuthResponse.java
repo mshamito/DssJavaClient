@@ -22,8 +22,8 @@ public class AuthResponse {
     @Setter(AccessLevel.PRIVATE)
     private long expiresIn;
     private final String tokenType = "Bearer";
-//    private String error;
-//    private String errorDescription;
+    private String error;
+    private String errorDescription;
 
     public AuthResponse(AccessToken accessToken) {
         this.setAccessToken(accessToken.getToken());
