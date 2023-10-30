@@ -1,0 +1,65 @@
+app:
+  config:
+    callback_host: http://ubuntu-m.cp.ru:8080
+    idp_callback_endpoint: /api/dss/sts-callback
+    ss_callback_endpoint: /api/dss/ss-callback
+  keystore:
+    ### operator's alias
+    alias: super-oper-171023
+    ### operator's keystore
+    name: HDImageStore
+    ### password can be omitted
+#    password:
+dss:
+  api_client:
+    ### default values defined in OperatorCertAuthorization and AuthService classes
+    use_cache: true
+    api_client_id: ${CLIENT_ID}
+    ### for public api client could be omitted
+    api_client_secret: ${CLIENT_SECRET}
+  config:
+    base_url: https://stenddss.cryptopro.ru
+    ### default values defined in DssConfig class
+#    sts_instance: STS
+#    sign_server_instance: SignServer
+    doc_store_instance: stenddssds
+    ### by default rsa tls is using, for operator authorization using gost tls only
+    ### this trigger enabling gost tls for all connections
+    use_gost_for_single_tls: true
+    ### default ports defined in DssConfig class
+#    rsa_port: 443
+#    gost_port: 4430
+logging:
+  level:
+    ru:
+      cryptopro:
+        support: INFO
+#        support: DEBUG
+
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driverClassName: org.h2.Driver
+    username: sa
+    password: sa
+    url: jdbc:h2:mem:mydb
+  h2:
+    console:
+      enabled: true
+  jackson:
+    serialization:
+      indent_output: true
+  jpa:
+    open-in-view: false
+    spring:
+      jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+  output:
+    ansi:
+      enabled: always
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
