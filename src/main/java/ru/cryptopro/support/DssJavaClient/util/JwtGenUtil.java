@@ -25,8 +25,8 @@ public class JwtGenUtil {
 
         Map<String, Object> payload = new HashMap<>();
         payload.put(useNameIdentifier? "nameidentifier" : "unique_name", username);
-//        long unixTime = System.currentTimeMillis() / 1000L;
-        long unixTime = new Date().getTime();
+        long unixTime = System.currentTimeMillis() / 1000L;
+//        long unixTime = new Date().getTime();
         long expireTime = unixTime + timeout;
         payload.put("nbf", unixTime);
         payload.put("exp", expireTime);

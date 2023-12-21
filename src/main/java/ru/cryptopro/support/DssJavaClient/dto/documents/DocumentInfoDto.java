@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.web.multipart.MultipartFile;
 import ru.cryptopro.support.DssJavaClient.util.Utils;
 
@@ -17,7 +18,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @JsonNaming(PropertyNamingStrategies.UpperCamelCaseStrategy.class)
 public class DocumentInfoDto {
     private UUID id;
@@ -26,7 +27,7 @@ public class DocumentInfoDto {
     private long uploadTime;
     private long lastAccessTime;
     private String filename;
-    private Boolean isTemporary = true;
+    private Boolean isTemporary;
     private String hash;
     private String hashAlgorithm;
     private AdditionalInfoDto additionalInfo = null;
@@ -37,18 +38,19 @@ public class DocumentInfoDto {
     @JsonIgnore
     private byte[] rawData;
 
+    @SneakyThrows
+    public DocumentInfoDto(MultipartFile multipartFile) {
+        setFilename(multipartFile.getOriginalFilename());
+        setIsTemporary(true);
+        setRawData(multipartFile.getBytes());
+    }
+
     public Date getUploadTime() {
         return new Date(uploadTime * 1000);
     }
 
     public Date getLastAccessTime() {
         return new Date(lastAccessTime * 1000);
-    }
-
-    @SneakyThrows
-    public DocumentInfoDto(MultipartFile multipartFile) {
-        setFilename(multipartFile.getOriginalFilename());
-        setRawData(multipartFile.getBytes());
     }
 
     @Override

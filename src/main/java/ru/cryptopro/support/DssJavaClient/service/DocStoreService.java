@@ -63,7 +63,15 @@ public class DocStoreService {
         MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
         for (DocumentInfoDto walk : documentInfoList) {
             body.add(walk.getFilename() + "_info", walk.toString());
-            body.add(walk.getFilename() + "_content", walk.getRawData());
+            MultiValueMap<String, String> fileMap = new LinkedMultiValueMap<>();
+            ContentDisposition contentDisposition = ContentDisposition
+                    .builder("form-data")
+                    .name(walk.getFilename() + "_content")
+                    .filename(walk.getFilename())
+                    .build();
+            fileMap.add(HttpHeaders.CONTENT_DISPOSITION, contentDisposition.toString());
+            HttpEntity<byte[]> fileEntity = new HttpEntity<>(walk.getRawData(), fileMap);
+            body.add(walk.getFilename() + "_content", fileEntity);
         }
 
         String url = dssConfig.getDocStoreAddress() + UPLOAD_ENDPOINT;
@@ -73,6 +81,10 @@ public class DocStoreService {
         log.info("POST on URL: {}", url);
         log.debug("Request Header: {}", Utils.mapToStrings(headers.toSingleValueMap()));
         log.debug("Request Body (only keys): {}", body.keySet());
+        for (String walk : body.keySet()) {
+            if (walk.endsWith("_info"))
+                log.debug("{}: {}", walk, body.get(walk));
+        }
         try {
             ResponseEntity<DocsListDto> response = restTemplate.postForEntity(
                     url,

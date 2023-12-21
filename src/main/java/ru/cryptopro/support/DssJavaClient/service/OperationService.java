@@ -62,7 +62,6 @@ public class OperationService {
         AuthResponse authResponse = authService.login(userCredential);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         headers.setBearerAuth(authResponse.getAccessToken());
         HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(headers);
 
