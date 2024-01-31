@@ -8,6 +8,7 @@ app:
     alias: super-oper-171023
     ### operator's keystore
     name: HDImageStore
+#    name: HDIMAGE
     ### password can be omitted
 #    password:
 dss:
@@ -38,6 +39,7 @@ logging:
 
 server:
   port: 8080
+  shutdown: graceful
 
 spring:
   datasource:

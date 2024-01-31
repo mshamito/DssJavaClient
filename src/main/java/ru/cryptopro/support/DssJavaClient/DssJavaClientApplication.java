@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.security.Security;
+import java.security.Provider;
 import java.util.prefs.Preferences;
 
 @SpringBootApplication
@@ -31,10 +32,16 @@ public class DssJavaClientApplication {
 		// https://support.cryptopro.ru/index.php?/Knowledgebase/Article/View/315/6/warning-couldnt-flush-system-prefs-javautilprefsbackingstoreexception--sreate-failed
 		System.setProperty("java.util.prefs.syncInterval", "99999");
 
+		try {
+			Security.addProvider( (Provider) Class.forName("ru.CryptoPro.JCSP.JCSP").newInstance());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		Security.addProvider(new ru.CryptoPro.JCP.JCP());
 		Security.addProvider(new ru.CryptoPro.reprov.RevCheck());
 		Security.addProvider(new ru.CryptoPro.Crypto.CryptoProvider());
 		Security.addProvider(new ru.CryptoPro.ssl.Provider());
+//		Security.addProvider(new ru.CryptoPro.sspiSSL.SSPISSL());
 	}
 
 	public static void main(String[] args) {
