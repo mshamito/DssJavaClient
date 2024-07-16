@@ -1,5 +1,6 @@
 package ru.cryptopro.support.DssJavaClient.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -23,6 +24,7 @@ import java.util.*;
 
 @Log4j2
 @Service
+@RequiredArgsConstructor
 public class DocStoreService {
     private final DssConfig dssConfig;
     private final AuthService authService;
@@ -33,17 +35,7 @@ public class DocStoreService {
     final static String GET_INFO_ENDPOINT = ENDPOINT_PREFIX + "info";
     final static String GET_ALL_ENDPOINT = ENDPOINT_PREFIX + "user/docinfo/all";
 
-    public DocStoreService(
-            DssConfig dssConfig,
-            AuthService authService,
-            RestTemplate restTemplate
-    ) {
-        this.dssConfig = dssConfig;
-        this.authService = authService;
-        this.restTemplate = restTemplate;
-    }
 
-    //    @SneakyThrows
     public DocsListDto upload(
             UserCredentialDto userCredential,
             List<MultipartFile> multipartFileList

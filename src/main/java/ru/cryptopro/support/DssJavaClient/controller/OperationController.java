@@ -1,5 +1,6 @@
 package ru.cryptopro.support.DssJavaClient.controller;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -13,12 +14,10 @@ import java.util.List;
 @Log4j2
 @RestController
 @RequestMapping(value = "/api/operations", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequiredArgsConstructor
 public class OperationController {
     private final OperationService operationService;
 
-    public OperationController(OperationService operationService) {
-        this.operationService = operationService;
-    }
 
     @GetMapping(value = "/")
     public List<OperationDto> listAll(

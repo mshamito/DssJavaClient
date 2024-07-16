@@ -1,6 +1,6 @@
 app:
   config:
-    callback_host: http://ubuntu-m.cp.ru:8080
+    callback_host: http://$CALLBACK_HOST:8080
     idp_callback_endpoint: /api/dss/sts-callback
     ss_callback_endpoint: /api/dss/ss-callback
   keystore:
@@ -26,7 +26,7 @@ dss:
     doc_store_instance: stenddssds
     ### by default rsa tls is using, for operator authorization using gost tls only
     ### this trigger enabling gost tls for all connections
-    use_gost_for_single_tls: true
+    use_gost_for_single_tls: false
     ### default ports defined in DssConfig class
 #    rsa_port: 443
 #    gost_port: 4430

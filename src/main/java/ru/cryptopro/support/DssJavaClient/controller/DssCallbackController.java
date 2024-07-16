@@ -1,6 +1,7 @@
 package ru.cryptopro.support.DssJavaClient.controller;
 
 import io.swagger.v3.oas.annotations.Hidden;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,12 +15,10 @@ import ru.cryptopro.support.DssJavaClient.service.CallbackService;
 @CrossOrigin
 @RestController
 @Hidden
+@RequiredArgsConstructor
 public class DssCallbackController {
     private final CallbackService callbackService;
 
-    public DssCallbackController(CallbackService callbackService) {
-        this.callbackService = callbackService;
-    }
 
     @PostMapping("${app.config.idp_callback_endpoint}")
     public String catchIDPCallback(@RequestBody DssIDPCallbackDto callback) {

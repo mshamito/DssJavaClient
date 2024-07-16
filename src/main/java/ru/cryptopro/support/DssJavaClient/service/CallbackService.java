@@ -1,5 +1,6 @@
 package ru.cryptopro.support.DssJavaClient.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import ru.cryptopro.support.DssJavaClient.dto.confirmation.DssIDPCallbackDto;
@@ -12,12 +13,10 @@ import java.util.Optional;
 
 @Log4j2
 @Service
+@RequiredArgsConstructor
 public class CallbackService {
     private final ConfirmationRepo confirmationRepo;
 
-    public CallbackService(ConfirmationRepo confirmationRepo) {
-        this.confirmationRepo = confirmationRepo;
-    }
 
     public void handleSSCallback(SignResponse callback) {
         Optional<ConfirmationEntity> optionalConfirmation = confirmationRepo.findByGuid(callback.getOperation().getId());

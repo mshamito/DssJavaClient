@@ -11,6 +11,7 @@ import org.apache.hc.client5.http.ssl.SSLConnectionSocketFactory;
 import org.apache.hc.core5.ssl.SSLContexts;
 import org.apache.hc.core5.ssl.TrustStrategy;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
@@ -60,8 +61,7 @@ public class RestTemplateConfig extends RestTemplate {
         if (disableRedirect)
             builder.disableRedirectHandling();
         CloseableHttpClient httpClient = builder.build();
-        HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
-        requestFactory.setHttpClient(httpClient);
-        return new RestTemplate(requestFactory);
+        RestTemplateBuilder restTemplateBuilder = new RestTemplateBuilder();
+        return restTemplateBuilder.requestFactory(() -> new HttpComponentsClientHttpRequestFactory(httpClient)).build();
     }
 }

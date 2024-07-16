@@ -1,5 +1,6 @@
 package ru.cryptopro.support.DssJavaClient.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Log4j2
 @Service
+@RequiredArgsConstructor
 public class OperationService {
     private final DssConfig dssConfig;
 
@@ -24,16 +26,6 @@ public class OperationService {
 
     final static String ENDPOINT = "/operations";
 
-
-    public OperationService(
-            DssConfig dssConfig,
-            AuthService authService,
-            RestTemplate restTemplate
-    ) {
-        this.dssConfig = dssConfig;
-        this.authService = authService;
-        this.restTemplate = restTemplate;
-    }
 
     public List<OperationDto> getAllActive(UserCredentialDto userCredential) {
         AuthResponse authResponse = authService.login(userCredential);

@@ -1,5 +1,6 @@
 package ru.cryptopro.support.DssJavaClient.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -30,6 +31,7 @@ import java.util.Optional;
 
 @Log4j2
 @Service
+@RequiredArgsConstructor
 public class SignService {
     private final DssConfig dssConfig;
     private final DssApiCredConfig apiCredConfig;
@@ -41,24 +43,6 @@ public class SignService {
     private final static String SIGN_V2_ENDPOINT = "/rest/api/v2/signature";
     private final static String CONFIRM_V2_ENDPOINT = "/v2.0/confirmation";
 
-
-    public SignService(
-            DssConfig dssConfig,
-            DssApiCredConfig apiCredConfig,
-            AuthService authService,
-            CallbackConfig callbackConfig,
-            RestTemplate restTemplate,
-            ConfirmationRepo confirmation,
-            OperationService operationService
-    ) {
-        this.dssConfig = dssConfig;
-        this.apiCredConfig = apiCredConfig;
-        this.authService = authService;
-        this.callbackConfig = callbackConfig;
-        this.restTemplate = restTemplate;
-        this.confirmation = confirmation;
-        this.operationService = operationService;
-    }
 
     public SignResponse sign(UserCredentialDto userCredential, SignDocsListDto signDocsList) {
         HttpHeaders headers = new HttpHeaders();

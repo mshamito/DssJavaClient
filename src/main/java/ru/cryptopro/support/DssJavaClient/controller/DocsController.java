@@ -1,6 +1,7 @@
 package ru.cryptopro.support.DssJavaClient.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.MediaType;
@@ -20,12 +21,10 @@ import java.util.UUID;
 @Log4j2
 @RestController
 @RequestMapping(value = "/api/doc/", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequiredArgsConstructor
 public class DocsController {
     private final DocStoreService docStoreService;
 
-    public DocsController(DocStoreService docStoreService) {
-        this.docStoreService = docStoreService;
-    }
 
     @Operation(summary = "Upload file to DocumentStore")
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

@@ -1,6 +1,7 @@
 package ru.cryptopro.support.DssJavaClient.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -13,14 +14,10 @@ import ru.cryptopro.support.DssJavaClient.service.SignService;
 @Log4j2
 @RestController
 @RequestMapping(value = "/api", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequiredArgsConstructor
 public class SignController {
     private final SignService signService;
 
-    public SignController(
-            SignService signService
-    ) {
-        this.signService = signService;
-    }
 
     @Operation(summary = "Sign documents pack")
     @PostMapping(value = "/sign")

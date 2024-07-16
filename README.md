@@ -18,7 +18,7 @@
 ## запуск проекта
 указать переменные в строке запуска
 ```shell
-CLIENT_ID=<clientid> CLIENT_SECRET=<client-secret> java -jar build/libs/DssJavaClient-0.0.1-SNAPSHOT.jar
+CLIENT_ID=<clientid> CLIENT_SECRET=<client-secret> CALLBACK_HOST=<your-java-server-name> java -jar build/libs/DssJavaClient-0.0.1-SNAPSHOT.jar
 ```
 
 ## доступен swagger

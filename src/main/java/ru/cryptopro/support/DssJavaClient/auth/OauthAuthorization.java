@@ -1,5 +1,6 @@
 package ru.cryptopro.support.DssJavaClient.auth;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,21 +16,13 @@ import ru.cryptopro.support.DssJavaClient.enums.GrantTypeEnum;
 @Component
 @Log4j2
 @Qualifier("OauthAuthorization")
+@RequiredArgsConstructor
 public class OauthAuthorization implements Authorization {
     private final DssConfig dssConfig;
     private final DssApiCredConfig dssApiCredConfig;
     private final BasicAuthorization basicAuthorization;
     private final GrantTypeEnum grantType = GrantTypeEnum.PASSWORD;
 
-    public OauthAuthorization(
-            DssConfig dssConfig,
-            DssApiCredConfig dssApiCredConfig,
-            BasicAuthorization basicAuthorization
-    ) {
-        this.dssConfig = dssConfig;
-        this.dssApiCredConfig = dssApiCredConfig;
-        this.basicAuthorization = basicAuthorization;
-    }
 
     @Override
     public AuthResponse login(UserCredentialDto userCredential) {

@@ -1,6 +1,7 @@
 package ru.cryptopro.support.DssJavaClient.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -12,12 +13,10 @@ import ru.cryptopro.support.DssJavaClient.service.AuthService;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/api/auth", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequiredArgsConstructor
 public class LoginController {
     private final AuthService authService;
 
-    public LoginController(AuthService authService) {
-        this.authService = authService;
-    }
 
     @Operation(summary = "Get access token for user")
     @GetMapping(value = "/login")
