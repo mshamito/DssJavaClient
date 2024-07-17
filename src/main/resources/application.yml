@@ -1,6 +1,6 @@
 app:
   config:
-    callback_host: http://$CALLBACK_HOST:8080
+    callback_host: http://${CALLBACK_HOST}:8080
     idp_callback_endpoint: /api/dss/sts-callback
     ss_callback_endpoint: /api/dss/ss-callback
   keystore:
@@ -34,8 +34,8 @@ logging:
   level:
     ru:
       cryptopro:
-        support: INFO
-#        support: DEBUG
+#        support: INFO
+        support: DEBUG
 
 server:
   port: 8080
